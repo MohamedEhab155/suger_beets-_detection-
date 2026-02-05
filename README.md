@@ -1,110 +1,110 @@
-# Sugar Beet and Weed Classification using YOLOv12s
+# Sugar Beet and Weed Classification
 
-<div align="center">
-  <img src="https://stmaaprodfwsite.blob.core.windows.net/assets/sites/1/2024/02/Sugar-beet-plants-growing-on-black-fen-soil-Cambridgeshire-early-June-c-GNP-web.jpg" alt="Sugar Beet Classification Banner" width="800"/>
-</div>
+A computer vision system for automated detection and classification of sugar beets and weeds in agricultural fields using YOLOv12s.
 
+![Sugar Beet Field](https://stmaaprodfwsite.blob.core.windows.net/assets/sites/1/2024/02/Sugar-beet-plants-growing-on-black-fen-soil-Cambridgeshire-early-June-c-GNP-web.jpg)
 
+## Overview
 
-## 🌱 Project Overview
-This project implements a robust computer vision solution to classify sugar beets and weeds in agricultural fields. By leveraging YOLOv12s, a state-of-the-art object detection model, the system accurately identifies and differentiates between sugar beets and various weed types, enabling precision agriculture applications.
+This project addresses the challenge of distinguishing sugar beet crops from weeds in real-time field conditions. Using the YOLOv12s object detection architecture, the model achieves high accuracy in identifying and localizing both sugar beets and various weed species, supporting precision agriculture workflows.
 
-## 📊 Dataset
-The dataset used in this project is the comprehensive Sugar Beets dataset from Roboflow:
-- **Source**: [Sugar Beets Dataset on Roboflow](https://universe.roboflow.com/vision-3gxqu/sugarbeets-zg7nc/dataset/2)
-- **Contents**: High-quality images of sugar beet fields with detailed annotations for sugar beets and various weed species
-- **Split**: Train/Validation/Test sets for robust model evaluation
+## Dataset
 
-## ✨ Features
-- Real-time detection and classification of sugar beets and weeds
-- High accuracy object detection using YOLOv12s architecture
-- Optimized for agricultural field conditions
-- Support for various image input formats
+**Source:** [Roboflow Sugar Beets Dataset](https://universe.roboflow.com/vision-3gxqu/sugarbeets-zg7nc/dataset/2)
 
-## 🔧 Model Architecture
-This project utilizes YOLOv12s (You Only Look Once), which offers:
-- Fast inference times suitable for real-time applications
-- Excellent accuracy in complex agricultural scenes
-- Efficient architecture optimized for deployment
+The dataset includes annotated images from agricultural fields with bounding boxes for sugar beets and multiple weed types. Images were split into training, validation, and test sets to ensure robust evaluation.
 
-## 📈 Model Performance Metrics
+## Technical Stack
 
-The following charts represent the performance of the trained model, showcasing key evaluation metrics.
+- **Framework:** Ultralytics YOLOv12s
+- **Training Platform:** Kaggle (GPU-accelerated)
+- **Language:** Python 3.x
+- **Key Libraries:** PyTorch, OpenCV, NumPy
 
-### F1-Score Curve
-The F1-Score curve demonstrates the model's balance between precision and recall, providing insights into its ability to classify both positive and negative instances correctly.
-<div align="center">
-  <img src="https://github.com/mohamed-ehab415/Suger_beets/blob/main/runs/detect/train/F1_curve.png" alt="F1 Score Curve" width="700"/>
-</div>
-
-### Precision-Recall Curve
-The Precision-Recall curve illustrates the trade-off between precision (positive prediction accuracy) and recall (true positive rate). This metric is especially useful when dealing with imbalanced datasets.
-<div align="center">
-  <img src="https://github.com/mohamed-ehab415/Suger_beets/blob/main/runs/detect/train/PR_curve.png" alt="Precision-Recall Curve" width="700"/>
-</div>
-
-### Model Training Results
-The table below summarizes the final evaluation results of the model, including accuracy, loss, and other key metrics:
-<div align="center">
-  <img src="https://github.com/mohamed-ehab415/Suger_beets/blob/main/runs/detect/train/results.png" alt="Model Training Results" width="700"/>
-</div>
-
-## ⚙️ Installation
+## Installation
 
 ```bash
-# Clone this repository
-git clone https://github.com/mohamed-ehab415/Suger_beets.git
-cd Suger_beets
-
-# Install dependencies from requirements.txt
+git clone https://github.com/MohamedEhab155/suger_beets-_detection-.git
+cd suger_beets-_detection-
 pip install -r requirements.txt
 ```
 
-## 🚀 Usage
+## Usage
+
+Basic inference example:
 
 ```python
 from ultralytics import YOLO
 
-# Load the trained model
+# Load trained weights
 model = YOLO('models/best.pt')
 
-# Perform inference on an image
-results = model('path_to_test_image.jpg')
+# Run detection
+results = model('path/to/image.jpg')
 
-# Display results
+# Display or save
 results[0].show()
-
-# Save results
-results[0].save(filename='prediction.jpg')
+results[0].save(filename='output.jpg')
 ```
 
-## 🔬 Training Process
-The model training process involved:
+## Model Performance
 
-1. **Data Preparation**: Downloaded and preprocessed the Sugar Beets dataset from Roboflow
-2. **Model Configuration**: Set up the YOLOv12s model with optimized hyperparameters
-3. **Training Environment**: Utilized Kaggle's GPU acceleration for efficient training
-4. **Monitoring**: Tracked key metrics during training using TensorBoard
-5. **Validation**: Regularly validated performance against a held-out validation set
+The trained model demonstrates strong performance across key metrics:
 
-The training was performed on Kaggle: [Sugar Beet Classification Notebook](https://www.kaggle.com/code/mohamedehab0122/using-kaggel/edit)
+### F1-Score
+![F1 Curve](https://raw.githubusercontent.com/MohamedEhab155/suger_beets-_detection-/main/runs/detect/train/F1_curve.png)
 
-## 🏆 Results
-The model achieved impressive results:
-- High precision and recall for both sugar beet and weed classes
-- Fast inference time suitable for real-time applications
-- Robust performance across varying field conditions and lighting
+The F1-score curve shows the balance between precision and recall at different confidence thresholds.
 
-## 🔮 Future Work
-- Expand detection capabilities to identify specific weed species
-- Implement edge deployment for in-field robotics applications
-- Develop a user-friendly interface for agricultural technicians
-- Integrate with automated weed removal systems
+### Precision-Recall
+![PR Curve](https://raw.githubusercontent.com/MohamedEhab155/suger_beets-_detection-/main/runs/detect/train/PR_curve.png)
 
+This curve indicates the model's ability to maintain high precision while maximizing recall across both classes.
 
+### Training Metrics
+![Results](https://raw.githubusercontent.com/MohamedEhab155/suger_beets-_detection-/main/runs/detect/train/results.png)
 
-## 🙏 Acknowledgments
-- Roboflow for providing the comprehensive Sugar Beets dataset
-- Ultralytics for the powerful YOLOv12s implementation
-- Kaggle for computing resources used during model training
+Complete training results showing loss curves, mAP scores, and other evaluation metrics.
 
+## Training Details
+
+The model was trained using the following approach:
+
+1. Downloaded and preprocessed the annotated dataset from Roboflow
+2. Configured YOLOv12s with hyperparameters optimized for agricultural imagery
+3. Trained on Kaggle's GPU infrastructure (see [notebook](https://www.kaggle.com/code/mohamedehab0122/using-kaggel/edit))
+4. Monitored validation metrics to prevent overfitting
+5. Selected best checkpoint based on mAP@0.5 performance
+
+## Results
+
+The model achieves reliable detection across varying field conditions including different lighting, crop densities, and growth stages. Inference speed is suitable for real-time applications on standard hardware.
+
+## Potential Applications
+
+- Automated weed mapping and treatment planning
+- Crop health monitoring and yield estimation
+- Integration with robotic weeding systems
+- Data collection for precision agriculture analytics
+
+## Future Improvements
+
+- Fine-grained weed species classification
+- Deployment optimization for edge devices (e.g., TensorRT, ONNX)
+- Multi-temporal tracking of crop/weed growth
+- Integration with UAV imagery for field-scale monitoring
+
+## Acknowledgments
+
+- Roboflow for dataset hosting and annotation tools
+- Ultralytics team for YOLOv12 implementation
+- Kaggle for computational resources
+
+## License
+
+This project is available for educational and research purposes.
+
+---
+
+**AI Engineer:** Mohamed Ehab  
+**Contact:** [GitHub Profile](https://github.com/MohamedEhab155)
